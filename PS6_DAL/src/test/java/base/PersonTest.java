@@ -18,7 +18,7 @@ import org.junit.After;
 
 public class PersonTest {
 	
-	private static PersonDomainModel person1;
+	/* private static PersonDomainModel person1;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -81,5 +81,5 @@ public class PersonTest {
 		assertNull("The Person shouldn't have been in the database",person);	
 		
 	}
-
+ */
 }

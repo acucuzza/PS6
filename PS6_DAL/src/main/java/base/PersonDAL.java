@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import domain.PersonDomainModel;
-import domain.StudentDomainModel;
 import util.HibernateUtil;
 
 public class PersonDAL {
@@ -39,13 +38,13 @@ public class PersonDAL {
 	public static ArrayList<PersonDomainModel> getPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
-		StudentDomainModel perGet = null;		
+		PersonDomainModel perGet = null;		
 		ArrayList<PersonDomainModel> pers = new ArrayList<PersonDomainModel>();
 		
 		try {
 			tx = session.beginTransaction();	
-			List students = session.createQuery("FROM PersonDomainModel").list();
-			for (Iterator iterator = students.iterator(); iterator.hasNext();) {
+			List persons = session.createQuery("FROM PersonDomainModel").list();
+			for (Iterator iterator = persons.iterator(); iterator.hasNext();) {
 				PersonDomainModel per = (PersonDomainModel) iterator.next();
 				pers.add(per);
 
@@ -71,7 +70,7 @@ public class PersonDAL {
 		
 		try {
 			tx = session.beginTransaction();							
-			Query query = session.createQuery("from StudentDomainModel where personId = :id ");
+			Query query = session.createQuery("from PersonDomainModel where personId = :id ");
 			query.setParameter("id", perID.toString());
 			List<?> list = query.list();
 			perGet = (PersonDomainModel)list.get(0);
@@ -91,12 +90,12 @@ public class PersonDAL {
 	public static void deletePerson(UUID perID) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
-		StudentDomainModel perGet = null;		
+		PersonDomainModel perGet = null;		
 		
 		try {
 			tx = session.beginTransaction();							
-			PersonDomainModel stu = (PersonDomainModel) session.get(PersonDomainModel.class, perID);
-			session.delete(stu);
+			PersonDomainModel per = (PersonDomainModel) session.get(PersonDomainModel.class, perID);
+			session.delete(per);
 			tx.commit();
 		} 
 		catch (HibernateException e) {
