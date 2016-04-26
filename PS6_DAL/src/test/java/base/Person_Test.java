@@ -66,7 +66,7 @@ public class Person_Test {
 	public void TestUpdatingPerson()
 	{		
 		PersonDomainModel person;
-		final String lastName_test = "Fredrickson";
+		final String lastName_test = "Johnson";
 		
 		person = PersonDAL.getPerson(person1.getPersonID());		
 		assertNull("person_test1 error, person_test1 did not belong in the database",person);		
